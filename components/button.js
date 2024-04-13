@@ -5,7 +5,7 @@ const Button = ({ children, className, handlePress }) => {
   return (
 
     <View style={style.container} >
-      <Pressable android_ripple={{ color: '#E3E3E3' }} style={{ padding: 14 }} onPress={handlePress}>
+      <Pressable android_ripple={{ color: '#cac9c91c' }} style={{ padding: 14 }} onPress={handlePress}>
         <Text style={style.text}>
           {children}
         </Text>

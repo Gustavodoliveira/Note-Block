@@ -1,16 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import TextView from './components/text';
 import Button from './components/button';
 import { useState } from 'react';
+import Notation from './components/Notation';
+import Modal from './components/modal';
 
 export default function App() {
 
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function press() {
-    console.log('hi hi');
+    setModalIsVisible(() => modalIsVisible ? false : true)
   }
 
   return (
@@ -26,7 +28,19 @@ export default function App() {
       <View style={styles.noteContainer}>
         <View style={styles.noteContainerText}>
           <Text style={styles.text}>Notes</Text>
+          <ScrollView style={styles.noteContent}>
+            <Notation title={'Test'} />
+          </ScrollView>
         </View>
+        {
+          modalIsVisible && (
+            <View style={styles.modalContainer}>
+              <Modal />
+            </View>
+
+          )
+        }
+
 
       </View>
 
@@ -43,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   container: {
-    flex: 1
+    flex: 1,
   },
   textContainer: {
     marginTop: 50,
@@ -58,6 +72,13 @@ const styles = StyleSheet.create({
   },
   noteContainerText: {
     paddingHorizontal: 20
+  },
+  noteContent: {
+    marginTop: 20,
+    paddingHorizontal: 10
+  },
+  modalContainer: {
+    alignItems: 'center'
   }
 
 });
